@@ -17,7 +17,7 @@ defineProps({
 
 <template>
 <div id="frequency1-range-container">
-	<label for="range" class="form-label">
+	<label id="label" for="range" class="form-label">
 		{{ label }}
 	</label>
 	<input 
@@ -33,5 +33,9 @@ defineProps({
 <style scoped>
 #range {
 	padding-bottom: 2rem;
+}
+
+#label {
+	padding-bottom: 1.5rem;
 }
 </style>

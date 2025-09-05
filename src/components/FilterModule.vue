@@ -8,24 +8,13 @@ import { ref, watch } from 'vue';
 const audioCtx = getAudioCtx();
 const filterType = ref('lowpass');
 
-const props = defineProps({
-	state: Object
-});
-const emit = defineEmits(['update']);
-
 watch(filterType, (newFilterType) => {
-	props.state.mode = newFilterType;
-	emit('update', props.state);
 });
 
 function onLevelInput(e) {
-	props.state.level = e.target.value;
-	emit('update', props.state);
 }
 
 function onResonanceInput(e) {
-	props.state.resonance = e.target.value;
-	emit('update', props.state);
 }
 </script>
 

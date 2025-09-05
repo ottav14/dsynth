@@ -24,20 +24,28 @@ function onInput(e) {
 </script>
 
 <template>
-	<label id="label" class="form-select-label" for="options">
-		{{ label }}
-	</label>
-	<select id="options" class="form-select" @change="onInput">
-		<option v-for="(item, i) in items" :value="i">{{ item }}</option>
-	</select>
+	<div id="container">
+		<label id="label" class="form-select-label" for="options">
+			{{ label }}
+		</label>
+		<select id="options" class="form-select" @change="onInput">
+			<option v-for="(item, i) in items" :value="i">{{ item }}</option>
+		</select>
+	</div>
 </template>
 
 <style scoped>
+#container {
+	display: flex;
+	flex-direction: column;
+}
+
 #label {
 	padding-bottom: 1rem;
 }
 
 #options {
 	margin-bottom: 2rem;
+	width: 20rem;
 }
 </style>

@@ -16,7 +16,9 @@ function updateState(state) {
 
 <template>
 <Module label="Oscillator">
-	<Oscillator :state="state" @update="updateState" />
+	<Oscillator count="1" :state="state" @update="updateState" />
+	<Oscillator count="2" :state="state" @update="updateState" />
+	<Oscillator count="3" :state="state" @update="updateState" />
 </Module>
 </template>
 
