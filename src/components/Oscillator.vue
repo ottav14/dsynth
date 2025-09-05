@@ -3,8 +3,9 @@ import Dropdown from './Dropdown.vue';
 import Range from './Range.vue';
 import getAudioCtx from '../audioCtx.js';
 import OscillatorEngine from '../OscillatorEngine.js';
+import getFilterEngine from '../FilterEngine.js';
 import getMasterGain from '../masterGain.js';
-import { ref, watch, defineProps, defineEmits } from 'vue';
+import { ref, watch } from 'vue';
 
 const audioCtx = getAudioCtx();
 const masterGain = getMasterGain();
@@ -13,7 +14,9 @@ const oscillatorTypes = [ 'sine', 'triangle', 'sawtooth', 'square' ];
 const oscType = ref('sine');
 
 const oscillatorEngine = new OscillatorEngine(audioCtx);
-oscillatorEngine.connectGain(masterGain);
+const filter = getFilterEngine().filter;
+oscillatorEngine.connectChain(filter, masterGain);
+oscillatorEngine.startOscillators();
 
 const props = defineProps({
 	state: Object,

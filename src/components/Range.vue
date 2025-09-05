@@ -12,6 +12,14 @@ defineProps({
 		type: Number,
 		require: true,
 	},
+	value: {
+		type: Number,
+		require: true,
+	},
+	step: {
+		type: Number,
+		default: 0.1,
+	},
 });
 </script>
 
@@ -26,6 +34,8 @@ defineProps({
 		id="range"
 		:min="min"
 		:max="max"
+		:value="value"
+		:step="step"
 	>
 </div>
 </template>

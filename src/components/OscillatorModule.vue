@@ -1,7 +1,7 @@
 <script setup>
 import Module from './Module.vue';
 import Oscillator from './Oscillator.vue';
-import { ref, watch, defineProps, defineEmits } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
 	state: Object

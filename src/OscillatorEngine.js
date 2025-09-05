@@ -21,16 +21,26 @@ export default class OscillatorEngine {
 		this.gainNodes[this.mode].gain.value = 1;
 	}
 
-	connectFilter(filter) {
-		for(let i=0; i<this.oscillators.length; i++)
-			this.oscillators[i].connect(this.gainNodes[i]).connect(filter).connect(this.ctx.destination);
+	connectChain(filter, masterGain) {
+		for(let i=0; i<this.oscillators.length; i++) {
+			this.oscillators[i].connect(this.gainNodes[i]);
+			this.gainNodes[i].connect(filter);
+			filter.connect(masterGain);
+			masterGain.connect(this.ctx.destination);
+		}
 	}
 
-	connectGain(gainNode) {
+	connectGain(masterGain) {
 		for(let i=0; i<this.oscillators.length; i++) {
-			this.oscillators[i].connect(this.gainNodes[i]).connect(gainNode).connect(this.ctx.destination);
-			this.oscillators[i].start();
+			this.oscillators[i].connect(this.gainNodes[i]);
+			this.gainNodes[i].connect(masterGain);
+			masterGain.connect(this.ctx.destination);
 		}
+	}
+
+	startOscillators() {
+		for(let i=0; i<this.oscillators.length; i++)
+			this.oscillators[i].start();
 	}
 
 	muteAllOscillators() {
